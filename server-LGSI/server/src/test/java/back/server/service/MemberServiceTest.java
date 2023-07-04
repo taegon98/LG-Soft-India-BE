@@ -1,5 +1,6 @@
 package back.server.service;
 
+import back.server.api.dto.member.InfoDto;
 import back.server.domain.Member;
 import back.server.repository.MemberRepository;
 import org.assertj.core.api.Assertions;
@@ -23,11 +24,11 @@ class MemberServiceTest {
     @DisplayName("회원가입")
     @Rollback(value = false)
     void 회원가입() {
-        Member member1 = new Member();
-        Member member2 = new Member();
+        InfoDto member1 = new InfoDto();
+        InfoDto member2 = new InfoDto();
 
-        member1.register("test1", "test1", "test1", "test1", "test1");
-        member2.register("test2", "test2", "test2", "test2", "test2");
+        member1.set("test1", "test1", "test1", "test1", "test1");
+        member2.set("test2", "test2", "test2", "test2", "test2");
 
         memberService.join(member1);
         memberService.join(member2);

@@ -1,9 +1,11 @@
 package back.server.service;
 
+import back.server.api.dto.member.InfoDto;
 import back.server.domain.Member;
 import back.server.exception.ExistenceException;
 import back.server.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,8 +14,13 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     //회원 가입
-    public Long join(Member member) {
-        validateDuplication(member.getUserId());
+    public Long join(InfoDto dto) {
+        validateDuplication(dto.getUserId());
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        dto.setPassword(encoder.encode(dto.getPassword()));
+
+        Member member = new Member();
+        member.register(dto.getUserName(), dto.getUserId(), dto.getPassword(), dto.getTelephone(), dto.getCity());
         memberRepository.save(member);
 
         return member.getPID();
