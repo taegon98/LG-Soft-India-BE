@@ -6,10 +6,7 @@ plugins {
 
 group = 'back'
 version = '0.0.1-SNAPSHOT'
-
-java {
-	sourceCompatibility = '11'
-}
+sourceCompatibility = '11'
 
 configurations {
 	compileOnly {
@@ -27,7 +24,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
