@@ -21,7 +21,7 @@ public class MemberService {
 
     //아이디 중복 검사
     private void validateDuplication(String userId) {
-        if (memberRepository.existByUserId(userId)) {
+        if (memberRepository.existsByUserId(userId)) {
             throw new ExistenceException("동일한 아이디가 이미 존재 합니다.");
         }
     }

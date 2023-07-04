@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface MemberRepository extends JpaRepository<Member, Long> {
     
     //아이디 중복 검사
-    boolean existByUserId(String userId);
+    boolean existsByUserId(String userId);
 }

@@ -2,6 +2,7 @@ package back.server.service;
 
 import back.server.domain.Member;
 import back.server.repository.MemberRepository;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ class MemberServiceTest {
 
     @Test
     @DisplayName("회원가입")
+    @Rollback(value = false)
     void 회원가입() {
         Member member1 = new Member();
         Member member2 = new Member();
