@@ -1,4 +1,4 @@
-package back.server.api.dto.member;
+package back.server.api.dto.user;
 
 import lombok.Getter;
 

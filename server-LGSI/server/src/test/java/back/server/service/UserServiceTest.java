@@ -1,13 +1,9 @@
 package back.server.service;
 
-import back.server.api.dto.member.InfoDto;
-import back.server.domain.Member;
-import back.server.repository.MemberRepository;
-import org.assertj.core.api.Assertions;
+import back.server.api.dto.user.InfoDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.ParameterResolutionDelegate;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,10 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
 @Transactional
-class MemberServiceTest {
+class UserServiceTest {
 
     @Autowired
-    private MemberService memberService;
+    private UserService userService;
 
     @Test
     @DisplayName("회원가입")
@@ -30,7 +26,7 @@ class MemberServiceTest {
         member1.set("test1", "test1", "test1", "test1", "test1");
         member2.set("test2", "test2", "test2", "test2", "test2");
 
-        memberService.join(member1);
-        memberService.join(member2);
+        userService.join(member1);
+        userService.join(member2);
     }
 }

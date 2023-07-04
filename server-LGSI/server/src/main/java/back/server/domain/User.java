@@ -1,20 +1,19 @@
 package back.server.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.lang.ref.PhantomReference;
 
 @Entity
 @Getter
 @NoArgsConstructor
-public class Member {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MEMBER_ID")
-    private Long PID;
+    private Long UID;
 
     private String userName;
 
@@ -26,6 +25,7 @@ public class Member {
 
     private String city;
 
+    @Builder
     public void register(String userName, String userId, String password, String telephone, String city) {
         this.userName = userName;
         this.userId = userId;
