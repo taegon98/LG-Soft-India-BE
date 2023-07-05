@@ -1,23 +1,16 @@
 package back.server.service;
 
 import back.server.api.dto.user.InfoDto;
-import back.server.api.dto.user.LoginDto;
 import back.server.domain.User;
 import back.server.exception.ExistenceException;
 import back.server.repository.UserRepository;
-import back.server.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.nio.file.attribute.UserPrincipalNotFoundException;
 
 @Service
 @Transactional
@@ -38,7 +31,6 @@ public class UserService implements UserDetailsService {
                 .telephone(dto.getTelephone())
                 .city(dto.getCity())
                 .build();
-
 
         userRepository.save(user);
 
