@@ -21,13 +21,4 @@ public class InfoDto {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    //테스트용
-    public void set(String userName, String userId, String password, String telephone, String city) {
-        this.userName = userName;
-        this.userId = userId;
-        this.password = password;
-        this.telephone = telephone;
-        this.city = city;
-    }
 }

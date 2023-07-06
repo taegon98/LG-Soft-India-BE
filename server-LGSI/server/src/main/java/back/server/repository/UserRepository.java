@@ -6,9 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    
     //아이디 중복 검사
     boolean existsByUserId(String userId);
-
     User findByUserId(String userId);
 }
