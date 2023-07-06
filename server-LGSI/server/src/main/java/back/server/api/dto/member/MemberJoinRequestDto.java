@@ -1,24 +1,18 @@
-package back.server.api.dto.user;
+package back.server.api.dto.member;
 
 import lombok.Data;
-import lombok.Getter;
-
 import javax.validation.constraints.NotBlank;
 
 @Data
-public class InfoDto {
+public class MemberJoinRequestDto {
     @NotBlank
-    private String userName;
+    private String memberName;
     @NotBlank
-    private String userId;
+    private String memberId;
     @NotBlank
     private String password;
     @NotBlank
     private String telephone;
     @NotBlank
     private String city;
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
