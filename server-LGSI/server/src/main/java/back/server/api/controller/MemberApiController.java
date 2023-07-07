@@ -4,8 +4,11 @@ import back.server.api.dto.ResponseDto;
 import back.server.api.dto.member.MemberJoinRequestDto;
 import back.server.api.dto.member.MemberLoginRequestDto;
 import back.server.api.dto.member.TokenInfo;
+import back.server.domain.City;
 import back.server.domain.Member;
 import back.server.exception.MethodArgumentNotValidException;
+import back.server.repository.CityRepository;
+import back.server.repository.MemberRepository;
 import back.server.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +27,7 @@ import java.util.Collections;
 public class MemberApiController {
 
     private final MemberService memberService;
+    private final CityRepository cityRepository;
 
     @PostMapping("/signup")
     public ResponseEntity<ResponseDto> signup(@RequestBody @Valid MemberJoinRequestDto dto, BindingResult bindingResult) {
@@ -31,12 +35,16 @@ public class MemberApiController {
             throw new MethodArgumentNotValidException("필드 값 오류");
         }
 
+        //city 이름에 해당하는 city 객체 찾기
+        City findCity = cityRepository.findCityByCityName(dto.getCityName());
+
         Member member = Member.builder()
                 .memberName(dto.getMemberName())
                 .memberId(dto.getMemberId())
                 .password(dto.getPassword())
                 .telephone(dto.getTelephone())
-                .city(dto.getCity())
+                .cityName(dto.getCityName())
+                .city(findCity)
                 .roles(Collections.singletonList("USER"))
                 .build();
 

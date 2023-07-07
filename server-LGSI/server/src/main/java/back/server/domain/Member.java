@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class Member implements UserDetails {
 
     @Id
-    @Column(updatable = false, unique = true, nullable = false)
+    @Column(name = "USER_ID", updatable = false, unique = true, nullable = false)
     @GeneratedValue
     private Long UID;
 
@@ -33,7 +33,11 @@ public class Member implements UserDetails {
     private String telephone;
 
     @Column(nullable = false)
-    private String city;
+    private String cityName;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(nullable = false, name="CITY_ID")
+    private City city;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default

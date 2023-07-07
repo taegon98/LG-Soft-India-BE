@@ -14,5 +14,5 @@ public class MemberJoinRequestDto {
     @NotBlank
     private String telephone;
     @NotBlank
-    private String city;
+    private String cityName;
 }
