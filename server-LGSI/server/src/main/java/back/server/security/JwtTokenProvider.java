@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 @Slf4j
 @Component
 public class JwtTokenProvider {
-
     private final Key key;
 
     public JwtTokenProvider(@Value("${jwt.secret}") String secretKey) {
@@ -38,6 +37,7 @@ public class JwtTokenProvider {
 
         long now = (new Date()).getTime();
 
+        //access Token
         Date accessTokenExpiresIn = new Date(now + 86400000);
         String accessToken = Jwts.builder()
                 .setSubject(authentication.getName())
@@ -46,6 +46,7 @@ public class JwtTokenProvider {
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
 
+        //refresh Token
         String refreshToken = Jwts.builder()
                 .setExpiration(new Date(now + 86400000))
                 .signWith(key, SignatureAlgorithm.HS256)
@@ -65,7 +66,7 @@ public class JwtTokenProvider {
         if (claims.get("auth") == null) {
             throw new RuntimeException("권한 정보가 없는 토큰입니다.");
         }
-
+        //Claim으로부터 권한 정보 가져오기
         Collection<? extends GrantedAuthority> authorities =
                 Arrays.stream(claims.get("auth").toString().split(","))
                         .map(SimpleGrantedAuthority::new)

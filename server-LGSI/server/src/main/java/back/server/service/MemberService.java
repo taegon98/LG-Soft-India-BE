@@ -25,6 +25,7 @@ public class MemberService {
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final JwtTokenProvider jwtTokenProvider;
 
+    //회원가입
     @Transactional
     public Long join(Member member) {
 
@@ -46,7 +47,7 @@ public class MemberService {
     public TokenInfo login(String memberId, String password) {
         // Login ID/PW -> Authentication 객체 생성
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(memberId, password);
-        // 실제 검증 (사용자 비밀번호 체크)
+        // 사용자 비밀번호 체크
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
         // 인증 정보를 기반으로 JWT 토큰 생성
         TokenInfo tokenInfo = jwtTokenProvider.generateToken(authentication);

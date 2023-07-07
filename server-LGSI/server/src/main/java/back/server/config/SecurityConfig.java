@@ -1,5 +1,7 @@
-package back.server.security;
+package back.server.config;
 
+import back.server.security.JwtAuthenticationFilter;
+import back.server.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
