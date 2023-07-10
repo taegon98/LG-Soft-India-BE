@@ -10,24 +10,25 @@ import back.server.exception.MethodArgumentNotValidException;
 import back.server.repository.CityRepository;
 import back.server.repository.MemberRepository;
 import back.server.service.MemberService;
+import back.server.service.RedisService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.Collections;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/members")
-@CrossOrigin
 @Slf4j
 public class MemberApiController {
 
     private final MemberService memberService;
+    private final MemberRepository memberRepository;
     private final CityRepository cityRepository;
+    private final RedisService redisService;
 
     @PostMapping("/signup")
     public ResponseEntity<ResponseDto> signup(@RequestBody @Valid MemberJoinRequestDto dto, BindingResult bindingResult) {
@@ -58,6 +59,7 @@ public class MemberApiController {
         String memberId = memberLoginRequestDto.getMemberId();
         String password = memberLoginRequestDto.getPassword();
         TokenInfo tokenInfo = memberService.login(memberId, password);
+        redisService.saveToken(memberRepository.findByMemberId(memberId).get().getUID(), tokenInfo); //토큰 정보 레디스에 저장
         return tokenInfo;
     }
 

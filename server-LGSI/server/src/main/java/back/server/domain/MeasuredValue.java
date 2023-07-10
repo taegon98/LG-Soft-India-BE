@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.redis.core.RedisHash;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -19,7 +21,6 @@ public class MeasuredValue {
     @Column(name = "VALUE_ID", updatable = false, nullable = false, unique = true)
     private Long MID;
 
-    @Column(nullable = false)
     private LocalDateTime dateTime;
 
     @Column(nullable = false)
