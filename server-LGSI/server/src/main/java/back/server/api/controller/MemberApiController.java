@@ -65,6 +65,6 @@ public class MemberApiController {
 
     @PostMapping("/test")
     public String test() {
-        return "success!";
+        return redisService.getToken(2L);
     }
 }

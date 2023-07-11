@@ -37,8 +37,8 @@ public class RedisService {
                     .getAccessToken();
         } catch (Exception e) {
             log.error(e.getMessage());
+            return null;
         }
-        return null;
     }
 
     // 토큰 삭제
@@ -50,5 +50,4 @@ public class RedisService {
             log.error(e.getMessage());
         }
     }
-
 }
