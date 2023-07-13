@@ -29,6 +29,8 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/members/login").permitAll()
                 .antMatchers("/members/signup").permitAll()
+                .antMatchers("/send-email/alarm").permitAll()
+                .antMatchers("/").permitAll()
                 .antMatchers("/raspberry/**").permitAll()
                 .antMatchers("/members/test").permitAll()
                 .anyRequest().authenticated()
