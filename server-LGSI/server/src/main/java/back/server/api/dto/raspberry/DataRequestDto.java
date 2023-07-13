@@ -4,10 +4,11 @@ import lombok.Data;
 import javax.validation.constraints.NotBlank;
 
 @Data
-public class WaterLevelRequestDto {
-
+public class DataRequestDto {
     @NotBlank
     private String cityName;
-    @NotBlank
     private String waterLevel;
+    private String temperature;
+    private String ph;
+    private String turbidity;
 }

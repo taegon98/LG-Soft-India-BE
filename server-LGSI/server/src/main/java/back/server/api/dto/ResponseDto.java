@@ -1,7 +1,6 @@
 package back.server.api.dto;
 
 import lombok.Getter;
-
 @Getter
 public class ResponseDto {
     private String message;

@@ -24,13 +24,10 @@ public class Member implements UserDetails {
     private String memberName;
 
     @Column(updatable = false, unique = true, nullable = false)
-    private String memberId;
+    private String email;
 
     @Column(nullable = false)
     private String password;
-
-    @Column(nullable = false)
-    private String telephone;
 
     @Column(nullable = false)
     private String cityName;
@@ -52,7 +49,7 @@ public class Member implements UserDetails {
 
     @Override
     public String getUsername() {
-        return memberId;
+        return email;
     }
 
     @Override
