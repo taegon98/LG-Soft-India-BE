@@ -26,19 +26,17 @@ public class MemberService {
     //회원가입
     @Transactional
     public Long join(Member member) {
-
-        validateDuplicateUserId(member);
         memberRepository.save(member);
-
         return member.getUID();
     }
 
     //아이디 중복 검사
-    private void validateDuplicateUserId(Member member) {
-        Optional<Member> findMember = memberRepository.findByEmail(member.getEmail());
+    public boolean validateDuplicateUserId(String email) {
+        Optional<Member> findMember = memberRepository.findByEmail(email);
         if (!findMember.isEmpty()) {
-            throw new ExistenceException("ID Duplication");
+            return false;
         }
+        return true;
     }
 
     @Transactional

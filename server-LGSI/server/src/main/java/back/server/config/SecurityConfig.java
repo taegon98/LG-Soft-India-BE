@@ -27,10 +27,9 @@ public class SecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/members/signup").permitAll()
-                .antMatchers("/api/members/login").permitAll()
-                .antMatchers("/api/data/save").permitAll()
-                .antMatchers("/api/data/get/**").hasRole("USER")
+                .antMatchers("/api/members/**").permitAll()
+                .antMatchers("/api/data/**").permitAll()
+                //.antMatchers("/api/data/get/**").hasRole("USER")
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);

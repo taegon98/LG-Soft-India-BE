@@ -1,6 +1,7 @@
 package back.server.api.controller;
 
 import back.server.api.dto.ResponseDto;
+import back.server.api.dto.member.MemberEmail;
 import back.server.api.dto.member.MemberJoinRequestDto;
 import back.server.api.dto.member.MemberLoginRequestDto;
 import back.server.api.dto.member.TokenInfo;
@@ -49,6 +50,17 @@ public class MemberApiController {
         memberService.join(member);
 
         return ResponseEntity.ok().body(new ResponseDto("Sign Up Success"));
+    }
+
+    @PostMapping("/duplicate")
+    public ResponseEntity<Object> duplicationCheck(@RequestBody @Valid MemberEmail email, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body(new ResponseDto("Field Error"));
+        }
+        if (memberService.validateDuplicateUserId(email.getEmail())) {
+            return ResponseEntity.ok().body(1);
+        }
+        else return ResponseEntity.badRequest().body(0);
     }
 
     @PostMapping("/login")
