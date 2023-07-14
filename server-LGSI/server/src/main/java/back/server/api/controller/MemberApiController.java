@@ -32,7 +32,7 @@ public class MemberApiController {
     @PostMapping("/signup")
     public ResponseEntity<ResponseDto> signup(@RequestBody @Valid MemberJoinRequestDto dto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            throw new MethodArgumentNotValidException("Field Error");
+            return ResponseEntity.badRequest().body(new ResponseDto("Field Error"));
         }
 
         City findCity = cityRepository.findCityByCityName(dto.getCityName());
@@ -52,15 +52,15 @@ public class MemberApiController {
     }
 
     @PostMapping("/login")
-    public TokenInfo login(@RequestBody MemberLoginRequestDto memberLoginRequestDto, BindingResult bindingResult) {
+    public ResponseEntity<Object> login(@RequestBody MemberLoginRequestDto memberLoginRequestDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            throw new MethodArgumentNotValidException("Field Error");
+            return ResponseEntity.badRequest().body("Field Error");
         }
 
         String email = memberLoginRequestDto.getEmail();
         String password = memberLoginRequestDto.getPassword();
         TokenInfo tokenInfo = memberService.login(email, password);
         redisService.saveToken(tokenInfo); //토큰 정보 레디스에 저장
-        return tokenInfo;
+        return ResponseEntity.ok().body(tokenInfo);
     }
 }
