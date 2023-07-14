@@ -30,6 +30,7 @@ public class SecurityConfig {
                 .antMatchers("/api/members/signup").permitAll()
                 .antMatchers("/api/members/login").permitAll()
                 .antMatchers("/api/data/save").permitAll()
+                .antMatchers("/api/data/get").hasRole("USER")
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);

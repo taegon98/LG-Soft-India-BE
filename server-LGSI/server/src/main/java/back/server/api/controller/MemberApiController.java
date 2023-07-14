@@ -23,6 +23,7 @@ import java.util.Collections;
 @RequiredArgsConstructor
 @RequestMapping("/api/members")
 @Slf4j
+@CrossOrigin
 public class MemberApiController {
 
     private final MemberService memberService;

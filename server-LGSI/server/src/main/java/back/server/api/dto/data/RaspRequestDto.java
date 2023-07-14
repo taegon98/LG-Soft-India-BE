@@ -1,10 +1,10 @@
-package back.server.api.dto.raspberry;
+package back.server.api.dto.data;
 
 import lombok.Data;
 import javax.validation.constraints.NotBlank;
 
 @Data
-public class DataRequestDto {
+public class RaspRequestDto {
     @NotBlank
     private String cityName;
     private String waterLevel;

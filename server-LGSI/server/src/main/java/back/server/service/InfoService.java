@@ -1,6 +1,6 @@
 package back.server.service;
 
-import back.server.api.dto.raspberry.DataRequestDto;
+import back.server.api.dto.data.RaspRequestDto;
 import back.server.domain.DataSet;
 import back.server.repository.InfoRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ public class InfoService {
     private final InfoRepository infoRepository;
 
     @Transactional
-    public void saveInfo(DataRequestDto request) {
+    public void saveInfo(RaspRequestDto request) {
         DataSet dataSet = DataSet.builder()
                 .cityName(request.getCityName())
                 .waterLevel(request.getWaterLevel())
