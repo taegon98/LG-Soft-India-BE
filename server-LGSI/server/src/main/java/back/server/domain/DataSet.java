@@ -1,5 +1,7 @@
 package back.server.domain;
 
+import back.server.api.dto.data.DataRequestDto;
+import back.server.api.dto.data.RaspRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,4 +30,11 @@ public class DataSet {
     private String ph;
 
     private String turbidity;
+
+    public void update(RaspRequestDto dto) {
+        this.waterLevel = dto.getWaterLevel();
+        this.temperature = dto.getTemperature();
+        this.ph = dto.getPh();
+        this.turbidity = dto.getTurbidity();
+    }
 }

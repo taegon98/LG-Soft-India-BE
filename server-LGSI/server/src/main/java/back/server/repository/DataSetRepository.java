@@ -5,5 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface InfoRepository extends JpaRepository<DataSet, Long> {
+public interface DataSetRepository extends JpaRepository<DataSet, String> {
+    DataSet findByCityName(String cityName);
 }

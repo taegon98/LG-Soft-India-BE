@@ -8,7 +8,6 @@ import back.server.domain.City;
 import back.server.domain.Member;
 import back.server.exception.MethodArgumentNotValidException;
 import back.server.repository.CityRepository;
-import back.server.repository.MemberRepository;
 import back.server.service.MemberService;
 import back.server.service.RedisService;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +26,6 @@ import java.util.Collections;
 public class MemberApiController {
 
     private final MemberService memberService;
-    private final MemberRepository memberRepository;
     private final CityRepository cityRepository;
     private final RedisService redisService;
 
