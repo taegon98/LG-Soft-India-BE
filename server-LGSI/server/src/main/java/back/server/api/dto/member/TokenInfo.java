@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Getter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
-import org.springframework.data.redis.core.TimeToLive;
 
 @Builder
 @Getter
@@ -13,10 +12,7 @@ import org.springframework.data.redis.core.TimeToLive;
 @RedisHash(value = "token", timeToLive = 3600)
 public class TokenInfo {
     @Id
-    private Long userId;
-    private String grantType;
+    private String email;
     private String accessToken;
     private String refreshToken;
-    @TimeToLive
-    private Integer expiration;
 }

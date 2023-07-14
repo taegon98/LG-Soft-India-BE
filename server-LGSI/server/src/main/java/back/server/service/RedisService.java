@@ -15,14 +15,12 @@ public class RedisService {
 
     //토큰 저장
     @Transactional
-    public void saveToken(Long userId, TokenInfo token) {
+    public void saveToken(TokenInfo token) {
         try {
             tokenRedisRepository.save(TokenInfo.builder()
-                    .userId(userId)
-                    .grantType(token.getGrantType())
+                    .email(token.getEmail())
                     .accessToken(token.getAccessToken())
                     .refreshToken(token.getRefreshToken())
-                    .expiration(3600)
                     .build());
         } catch (Exception e) {
             log.error(e.getMessage());
@@ -30,7 +28,7 @@ public class RedisService {
     }
 
     // 토큰 조회
-    public String getToken(Long userId) {
+    public String getToken(String userId) {
         try {
             return tokenRedisRepository.findById(userId)
                     .orElseThrow(IllegalArgumentException::new)

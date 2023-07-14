@@ -21,8 +21,9 @@ import java.util.Collections;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/members")
+@RequestMapping("/api/members")
 @Slf4j
+@CrossOrigin
 public class MemberApiController {
 
     private final MemberService memberService;
@@ -33,17 +34,15 @@ public class MemberApiController {
     @PostMapping("/signup")
     public ResponseEntity<ResponseDto> signup(@RequestBody @Valid MemberJoinRequestDto dto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            throw new MethodArgumentNotValidException("필드 값 오류");
+            throw new MethodArgumentNotValidException("Field Error");
         }
 
-        //city 이름에 해당하는 city 객체 찾기
         City findCity = cityRepository.findCityByCityName(dto.getCityName());
 
         Member member = Member.builder()
                 .memberName(dto.getMemberName())
-                .memberId(dto.getMemberId())
+                .email(dto.getEmail())
                 .password(dto.getPassword())
-                .telephone(dto.getTelephone())
                 .cityName(dto.getCityName())
                 .city(findCity)
                 .roles(Collections.singletonList("USER"))
@@ -51,20 +50,19 @@ public class MemberApiController {
 
         memberService.join(member);
 
-        return ResponseEntity.ok().body(new ResponseDto("success"));
+        return ResponseEntity.ok().body(new ResponseDto("Sign Up Success"));
     }
 
     @PostMapping("/login")
-    public TokenInfo login(@RequestBody MemberLoginRequestDto memberLoginRequestDto) {
-        String memberId = memberLoginRequestDto.getMemberId();
-        String password = memberLoginRequestDto.getPassword();
-        TokenInfo tokenInfo = memberService.login(memberId, password);
-        redisService.saveToken(memberRepository.findByMemberId(memberId).get().getUID(), tokenInfo); //토큰 정보 레디스에 저장
-        return tokenInfo;
-    }
+    public TokenInfo login(@RequestBody MemberLoginRequestDto memberLoginRequestDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            throw new MethodArgumentNotValidException("Field Error");
+        }
 
-    @PostMapping("/test")
-    public String test() {
-        return redisService.getToken(2L);
+        String email = memberLoginRequestDto.getEmail();
+        String password = memberLoginRequestDto.getPassword();
+        TokenInfo tokenInfo = memberService.login(email, password);
+        redisService.saveToken(tokenInfo); //토큰 정보 레디스에 저장
+        return tokenInfo;
     }
 }

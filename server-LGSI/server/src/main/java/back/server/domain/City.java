@@ -21,6 +21,6 @@ public class City {
     private String cityName;
 
     @OneToOne
-    @JoinColumn(name = "VALUE_ID")
-    private MeasuredValue value;
+    @JoinColumn(name = "DATA_ID")
+    private DataSet dataSet;
 }

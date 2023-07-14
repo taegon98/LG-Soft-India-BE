@@ -1,12 +1,11 @@
-package back.server.api.dto.member;
+package back.server.api.dto.data;
 
 import lombok.Data;
+
 import javax.validation.constraints.NotBlank;
 
 @Data
-public class MemberLoginRequestDto {
+public class DataRequestDto {
     @NotBlank
     private String email;
-    @NotBlank
-    private String password;
 }

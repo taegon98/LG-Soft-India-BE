@@ -13,7 +13,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
-
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -36,21 +35,22 @@ public class MemberService {
 
     //아이디 중복 검사
     private void validateDuplicateUserId(Member member) {
-        Optional<Member> findMember = memberRepository.findByMemberId(member.getMemberId());
+        Optional<Member> findMember = memberRepository.findByEmail(member.getEmail());
         if (!findMember.isEmpty()) {
-            throw new ExistenceException("동일한 아이디가 이미 존재 합니다.");
+            throw new ExistenceException("ID Duplication");
         }
     }
 
     @Transactional
-    public TokenInfo login(String memberId, String password) {
+    public TokenInfo login(String email, String password) {
         // Login ID/PW -> Authentication 객체 생성
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(memberId, password);
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(email, password);
         // 사용자 비밀번호 체크
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
         // 인증 정보를 기반으로 JWT 토큰 생성
-        TokenInfo tokenInfo = jwtTokenProvider.generateToken(authentication);
+        TokenInfo tokenInfo = jwtTokenProvider.generateToken(authentication, email);
 
         return tokenInfo;
     }
+
 }

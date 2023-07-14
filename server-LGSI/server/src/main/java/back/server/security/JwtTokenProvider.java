@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @Component
 public class JwtTokenProvider {
+
     private final Key key;
 
     public JwtTokenProvider(@Value("${jwt.secret}") String secretKey) {
@@ -29,7 +30,7 @@ public class JwtTokenProvider {
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public TokenInfo generateToken(Authentication authentication) {
+    public TokenInfo generateToken(Authentication authentication, String email) {
         // 권한 가져오기
         String authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
@@ -53,7 +54,7 @@ public class JwtTokenProvider {
                 .compact();
 
         return TokenInfo.builder()
-                .grantType("Bearer")
+                .email(email)
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
                 .build();
