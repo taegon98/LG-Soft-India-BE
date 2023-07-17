@@ -20,7 +20,7 @@ public class City {
     @Column(nullable = false)
     private String cityName;
 
-    @OneToOne
+    /*@OneToOne
     @JoinColumn(name = "DATA_ID")
-    private DataSet dataSet;
+    private DataSet dataSet;*/
 }

@@ -7,7 +7,6 @@ import back.server.api.dto.member.MemberLoginRequestDto;
 import back.server.api.dto.member.TokenInfo;
 import back.server.domain.City;
 import back.server.domain.Member;
-import back.server.exception.MethodArgumentNotValidException;
 import back.server.repository.CityRepository;
 import back.server.service.MemberService;
 import back.server.service.RedisService;
