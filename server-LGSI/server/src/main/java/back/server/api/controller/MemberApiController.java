@@ -22,7 +22,7 @@ import java.util.Collections;
 @RequiredArgsConstructor
 @RequestMapping("/api/members")
 @Slf4j
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class MemberApiController {
 
     private final MemberService memberService;

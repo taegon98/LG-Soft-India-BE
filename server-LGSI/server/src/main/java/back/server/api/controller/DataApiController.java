@@ -21,8 +21,8 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/data")
-@CrossOrigin
 @Slf4j
+@CrossOrigin(origins = "*")
 public class DataApiController {
 
     private final RedisService redisService;
