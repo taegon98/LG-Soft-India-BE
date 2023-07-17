@@ -1,6 +1,5 @@
 package back.server.domain;
 
-import back.server.api.dto.data.DataRequestDto;
 import back.server.api.dto.data.RaspRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+/*
 @Getter
 @Builder
 @NoArgsConstructor
@@ -38,3 +38,4 @@ public class DataSet {
         this.turbidity = dto.getTurbidity();
     }
 }
+*/
