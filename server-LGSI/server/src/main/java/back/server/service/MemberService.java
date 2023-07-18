@@ -2,7 +2,6 @@ package back.server.service;
 
 import back.server.api.dto.member.TokenInfo;
 import back.server.domain.Member;
-import back.server.exception.ExistenceException;
 import back.server.repository.MemberRepository;
 import back.server.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;

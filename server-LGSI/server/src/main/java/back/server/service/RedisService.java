@@ -1,16 +1,20 @@
 package back.server.service;
 
 import back.server.api.dto.data.DataInfo;
+import back.server.api.dto.email.EmailInfo;
 import back.server.api.dto.data.RaspRequestDto;
 import back.server.api.dto.member.TokenInfo;
+import back.server.api.dto.redis.Redis;
+import back.server.domain.Member;
 import back.server.repository.DataRedisRepository;
+import back.server.repository.EmailRedisService;
 import back.server.repository.TokenRedisRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +23,32 @@ public class RedisService {
     private final TokenRedisRepository tokenRedisRepository;
 
     private final DataRedisRepository dataRedisRepository;
+
+    private final EmailRedisService emailRedisService;
+
+    //지역별 이메일 캐시가 있는지 여부 확인
+    public Redis checkCityName(String cityName) {
+        Redis redis = new Redis();
+
+        if (cityName.equals("Delhi")) cityName = "DEL";
+        else if (cityName.equals("Bengaluru")) cityName = "BEN";
+
+        redis.setCityName(cityName);
+
+        if (emailRedisService.findById(cityName).isEmpty()) redis.setFlag(true);
+        else redis.setFlag(false);
+
+        return redis;
+    }
+    //지역별 이메일 저장
+    @Transactional
+    public void saveEmail(EmailInfo info) {
+        try {
+            emailRedisService.save(info);
+        } catch (Exception e) {
+            log.info(e.getMessage());
+        }
+    }
 
     //토큰 저장
     @Transactional

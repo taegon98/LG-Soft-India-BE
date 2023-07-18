@@ -1,11 +1,14 @@
 package back.server.api.controller;
 
 import back.server.api.dto.data.DataInfo;
+import back.server.api.dto.email.EmailInfo;
 import back.server.api.dto.data.RaspRequestDto;
 import back.server.api.dto.data.DataResponseDto;
+import back.server.api.dto.redis.Redis;
 import back.server.domain.EmailMessage;
 import back.server.domain.Member;
 import back.server.exception.MethodArgumentNotValidException;
+import back.server.repository.EmailRedisService;
 import back.server.repository.MemberRepository;
 import back.server.service.EmailSenderService;
 import back.server.service.RedisService;
@@ -30,38 +33,58 @@ public class DataApiController {
 
     private final EmailSenderService emailSenderService;
 
-    //private final DataSetService dataSetService;
+    private final EmailRedisService emailRedisService;
+
     @PostMapping("/save")
     public ResponseEntity saveData(@RequestBody @Valid RaspRequestDto request, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new MethodArgumentNotValidException("Field Error");
         }
 
-        if (Double.parseDouble(request.getWaterLevel()) >= 560 ||
+        List<Member> members;
+        EmailInfo emails;
+
+        Redis redis = redisService.checkCityName(request.getCityName());
+        if (redis.isFlag()) {
+            members = memberRepository.findByCityName(request.getCityName());
+
+            emails = new EmailInfo();
+            emails.setCity(redis.getCityName());
+
+            for (Member member : members) {
+                emails.getEmail().add(member.getEmail());
+            }
+
+            redisService.saveEmail(emails);
+        }
+        else {
+            emails = emailRedisService.findById(redis.getCityName()).get();
+        }
+
+
+        /*if (Double.parseDouble(request.getWaterLevel()) >= 560 ||
                 Double.parseDouble(request.getTemperature()) >= 28 ||
                 Double.parseDouble(request.getTurbidity()) >= 3 ||
                 (Double.parseDouble(request.getPh()) <= 5 || Double.parseDouble(request.getPh()) >= 9)) {
-
-            String city = request.getCityName();
-            List<Member> members = memberRepository.findByCityName(city);
 
             EmailMessage emailMessage = EmailMessage.builder()
                     .subject("TEST")
                     .message("TEST")
                     .build();
             log.info("1");
-            for (Member member : members) {
-                emailMessage.setTo(member.getEmail());
+            for (String email : emails.getEmail()) {
+                emailMessage.setTo(email);
                 emailSenderService.sendEmail(emailMessage);
             }
-        }
+        }*/
+
         redisService.saveData(request);
-        //dataSetService.updateData(request);
         return ResponseEntity.ok(200);
     }
 
     @GetMapping("/get/{email}")
     public ResponseEntity<DataResponseDto> getData(@PathVariable String email)  {
+
        /**
         * 센서 값 불러오기(DB 사용)
 
