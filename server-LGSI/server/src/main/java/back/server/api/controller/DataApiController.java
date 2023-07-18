@@ -82,8 +82,8 @@ public class DataApiController {
         return ResponseEntity.ok(200);
     }
 
-    @GetMapping("/get/{email}")
-    public ResponseEntity<DataResponseDto> getData(@PathVariable String email)  {
+    @GetMapping("/get/{cityName}")
+    public ResponseEntity<DataResponseDto> getData(@PathVariable String cityName)  {
 
        /**
         * 센서 값 불러오기(DB 사용)
@@ -99,9 +99,7 @@ public class DataApiController {
                 .turbidity(Double.parseDouble(data.getTurbidity()))
                 .build();
         **/
-
-        Member member = memberRepository.findByEmail(email).get();
-        String cityName = member.getCityName();
+       
         DataInfo data = redisService.getData(cityName);
         DataResponseDto response = DataResponseDto.builder()
                 .now(LocalDateTime.now())
