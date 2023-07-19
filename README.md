@@ -1,7 +1,4 @@
-# LGSI
-## Water Management System in India using Raspberry Pi
-
-## Table of Contents
+# Table of Contents
 *Note: This is only a navigation guide for the specification, and does not define or mandate terms for any specification-compliant documents.*
 - [Project information](#project-information)
   - [Description](#description)
@@ -11,23 +8,33 @@
   - [Requirements](#requirements)
   - [Installation](#installation)
 - [Stacks](#stacks)
+- [System Architecture](#system-architecture)
+- [Entity Relationship Diagram(ERD)](#entity-relationship-diagram)
 - [Screen configuration / API address](#screen-configuration-/-api-address)
 - [Key features](#key-features)
 - [Workflow](#workflow)
 - [Expectation](#expectation)
 
-좋음, 보통, 나쁨, 최악(인 경우엔 메일 내용 어떤거)
------------
+-----------------------------
 
-## Project information
+## 1. Project information
 
 ### Description
-A think tank "Science and Environment Center", which proposes policies to the government, points out that on average **200,000 people** die every year from inadequate water supply and contaminated water, and **75%** of India's total population is affected by contaminated water. The accumulation of water quality and flow monitoring data is of paramount importance in order to diagnose pollution status in rivers and effectively manage water quality through efficient control of pollutants. That's why we aim to enhance accessibility to clean water and promote better water management in India.
+According to the data from the World Health Organization (WHO) on 'Household drinking water’ data, from 2020 to 2022, the proportion of households with ‘At least basic’ access to drinking water has increased. However, the proportions of households with ‘Surface water’ and ‘Unimproved’ access have consistently decreased. Also A think tank "Science and Environment Center", which proposes policies to the government, points out that on average **200,000 people** die every year from inadequate water supply and contaminated water, and **75%** of India's total population is affected by contaminated water. The accumulation of water quality and flow monitoring data is of paramount importance in order to diagnose pollution status in rivers and effectively manage water quality through efficient control of pollutants. That's why we aim to enhance accessibility to clean water and promote better water management in India.
 
-###### Source: <https://www.newstown.co.kr/news/articleView.html?idxno=329356#google_vignette>
+*Yellow: the year 2020, Blue: the year 2021, Green: the year 2022*
 
-### Development period
-* 2023.05.16 ∼ 2023.07.31
+<img src="https://github.com/KimHeonjae/LGSI-peter/assets/134956232/44863af8-0c02-45f9-852f-f5e8116977f4.png" width="900" height="400">
+
+###### Source:
+<https://www.who.int/data/collections>
+
+<https://www.newstown.co.kr/news/articleView.html?idxno=329356#google_vignette>
+
+<br>
+
+## 2. Development period
+* 2023.07.01 ∼ 2023.07.19
 
 ### Team members
 - **Jung Gyuwon**
@@ -43,45 +50,11 @@ A think tank "Science and Environment Center", which proposes policies to the go
 - **Kim Heonjae**
   - Kyungpook National University, Department of Statistics. Project Manager
 
---------
+<br>
 
-## Getting Started Guide
+## 3. Getting Started Guide
 
 ### Requirements
-For building and running the application you need:
-Node.js ....
-......
-......
-필요한 요구사항들과 버전들 적어준다.
-
-### Installation
-repository를 clone하고 패키지 설치, 환경변수 설정, 실행하는 과정에 대한 내용들 코드로.
-
---------
-
-## Stacks
-- web - <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
-  <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
-  <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
-- DB - <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white">
-  <img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white">
-  <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
-- Design - <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">
-- Hardware coding - python, C++ (이거 이미지 넣어줭))
-
-
---------
-
-## Screen configuration / API address
-- 프론트엔드- 개발한 화면에 대한 내용 사진으로.
-  
-  예시
-<img src="https://github.com/KimHeonjae/LGSI/assets/134956232/0c76d398-1476-48c5-a5a1-56d35f9b4f3b.png" width="600" height="600">
-
-
-- 백엔드- API 주소 목록이나 이를 기록한 링크 걸어두면 좋을듯.
-
-
 - Hardware
   - Type of sensors
     - UNO R3 SMD --- Atmega328P Board 
@@ -90,22 +63,51 @@ repository를 clone하고 패키지 설치, 환경변수 설정, 실행하는 �
     - Temperature and Humidity Sensor (DHT22)
     - pH Sensor (PH-4502C)
     - Turbidity Sensor (TDS-3)
+  - How to connect sensors to Arduino Board
+    - Sensor Power: 5V
+    - Sensor Data pin
+    - pH Sensor: A2, A6
+    - Turbidity Sensor: A3, A7 
+    - Water level Sensor: A0, A4 
+    - Temperature and Humidity Sensor: A1, A5 
+      
 
-  - library to download
-    - DHT sensor library by Adafruit (1.4.4 v)
+### Installation
+- Hardware
+  - library to download - DHT sensor library by Adafruit (1.4.4 v)
       - Download link: https://github.com/adafruit/DHT-sensor-library
+   
+### Workflow
+<img src="https://github.com/KimHeonjae/LGSI-peter/assets/134956232/e12c46eb-74c2-46b5-aa34-87ffc3afce47.png" width="800" height="450">
 
---------
-## How to connect sensors to Arduino Board
-- Sensor Power: 5V
-- Sensor Data pin
-  - pH Sensor: A2, A6
-  - Turbidity Sensor: A3, A7 
-  - Water level Sensor: A0, A4 
-  - Temperature and Humidity Sensor: A1, A5 
----------
+### Entity Relationship Diagram
+<img src="https://github.com/KimHeonjae/LGSI-peter/assets/134956232/6de39f27-0c61-411a-9d60-161069dbb12b.png" width="700" height="400">
 
-## Key features
+### System Architecture
+<img src="https://github.com/KimHeonjae/LGSI-peter/assets/134956232/74430fcf-0c78-467c-a979-2d7e70948b1b.png" width="700" height="400">
+
+### Cache API
+![image](https://github.com/Gyu-won/LGSI/assets/102223636/41550ada-12f6-4f66-b5a9-9c6d95645d63)
+
+<br>
+
+![image](https://github.com/Gyu-won/LGSI/assets/102223636/fb488a06-0c53-42c1-9856-922a1b5dca29)
+
+### API address
+<https://www.notion.so/API-Document-bf95aca04f6c45c292381999a01e6694?pvs=4>
+
+### Tech Stacks
+![image](https://github.com/Gyu-won/LGSI/assets/102223636/3528d8c7-66b9-4535-920a-dc40926f5e5a)
+
+
+### Screen configuration / API address
+- 프론트엔드- 개발한 화면에 대한 내용 사진으로.
+  
+예시
+<img src="https://github.com/KimHeonjae/LGSI/assets/134956232/0c76d398-1476-48c5-a5a1-56d35f9b4f3b.png" width="600" height="600">
+
+
+## 4. Key features
 * **Provision of Regional Water Quality Data**
   - Collect water quality-related data by connecting sensors to a Raspberry Pi. Provide water quality data corresponding to the user's location. Specifically, We monitor water temperature, pH, turbidity and water level based on the collected data.
 * **Automatic Data Updates**
@@ -113,15 +115,9 @@ repository를 clone하고 패키지 설치, 환경변수 설정, 실행하는 �
 * **Alarm System**
   - We assess the state of water based on water quality data. When a dangerous situation occurs, we send a notification to the user within 10 milliseconds. This enables users to receive immediate information about the water condition and take necessary measures in response.
 
----------
-  
-## Workflow
 
-![image](https://github.com/KimHeonjae/LGSI-peter/assets/134956232/355ede7e-9235-4255-b7f3-d3eca587f457)
 
----------
-
-## Expectation
+## 5. Expectation
 
 * Public Utilization
   * The Indian government can utilize this system to monitor the current status of water pollution and scarcity on a regional basis in real-time, and devise solutions.
@@ -132,3 +128,5 @@ repository를 clone하고 패키지 설치, 환경변수 설정, 실행하는 �
   * Water quality management and monitoring system for personal aquariums or fish tanks.
   * Water quality measurement and risk notification system for school cafeterias.
   * Shower filter replacement timing(schedule) notification system.
+
+  
