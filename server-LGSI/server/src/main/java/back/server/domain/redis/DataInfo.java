@@ -1,4 +1,4 @@
-package back.server.api.dto.data;
+package back.server.domain.redis;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

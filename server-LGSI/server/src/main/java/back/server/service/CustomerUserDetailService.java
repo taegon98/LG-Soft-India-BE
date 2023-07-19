@@ -1,6 +1,6 @@
 package back.server.service;
 
-import back.server.domain.Member;
+import back.server.domain.db.Member;
 import back.server.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;

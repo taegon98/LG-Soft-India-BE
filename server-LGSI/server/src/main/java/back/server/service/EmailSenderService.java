@@ -1,6 +1,6 @@
 package back.server.service;
 
-import back.server.domain.EmailMessage;
+import back.server.api.dto.email.EmailMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;

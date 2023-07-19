@@ -1,4 +1,4 @@
-package back.server.domain;
+package back.server.api.dto.email;
 
 import lombok.Builder;
 import lombok.Data;

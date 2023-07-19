@@ -1,14 +1,14 @@
 package back.server.api.controller;
 
 import back.server.api.dto.ResponseDto;
-import back.server.api.dto.email.EmailInfo;
+import back.server.domain.redis.EmailInfo;
 import back.server.api.dto.member.MemberEmail;
 import back.server.api.dto.member.MemberJoinRequestDto;
 import back.server.api.dto.member.MemberLoginRequestDto;
-import back.server.api.dto.member.TokenInfo;
-import back.server.api.dto.redis.Redis;
-import back.server.domain.City;
-import back.server.domain.Member;
+import back.server.domain.redis.TokenInfo;
+import back.server.domain.redis.RedisInfo;
+import back.server.domain.db.City;
+import back.server.domain.db.Member;
 import back.server.repository.CityRepository;
 import back.server.repository.EmailRedisService;
 import back.server.service.MemberService;
@@ -51,17 +51,17 @@ public class MemberApiController {
                 .roles(Collections.singletonList("USER"))
                 .build();
 
-        Redis redis = redisService.checkCityName(member.getCityName());
+        RedisInfo redisInfo = redisService.checkCityName(member.getCityName());
 
-        if (redis.isFlag()) {
+        if (redisInfo.isFlag()) {
             EmailInfo emailInfo = new EmailInfo();
-            emailInfo.setCity(redis.getCityName());
+            emailInfo.setCity(redisInfo.getCityName());
 
             emailInfo.getEmail().add(member.getEmail());
             redisService.saveEmail(emailInfo);
         }
-        else if (!redis.isFlag()) {
-            EmailInfo emailInfo = emailRedisService.findById(redis.getCityName()).get();
+        else if (!redisInfo.isFlag()) {
+            EmailInfo emailInfo = emailRedisService.findById(redisInfo.getCityName()).get();
             emailInfo.getEmail().add(member.getEmail());
             redisService.saveEmail(emailInfo);
         }

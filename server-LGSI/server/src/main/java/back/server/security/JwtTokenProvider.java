@@ -1,6 +1,6 @@
 package back.server.security;
 
-import back.server.api.dto.member.TokenInfo;
+import back.server.domain.redis.TokenInfo;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;

@@ -1,7 +1,7 @@
 package back.server.service;
 
-import back.server.api.dto.member.TokenInfo;
-import back.server.domain.Member;
+import back.server.domain.redis.TokenInfo;
+import back.server.domain.db.Member;
 import back.server.repository.MemberRepository;
 import back.server.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;

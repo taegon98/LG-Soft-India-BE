@@ -1,4 +1,4 @@
-package back.server.api.dto.email;
+package back.server.domain.redis;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

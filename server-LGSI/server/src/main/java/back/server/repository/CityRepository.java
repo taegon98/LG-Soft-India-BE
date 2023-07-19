@@ -1,6 +1,6 @@
 package back.server.repository;
 
-import back.server.domain.City;
+import back.server.domain.db.City;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

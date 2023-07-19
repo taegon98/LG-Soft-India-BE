@@ -1,4 +1,4 @@
-package back.server.domain;
+package back.server.domain.db;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

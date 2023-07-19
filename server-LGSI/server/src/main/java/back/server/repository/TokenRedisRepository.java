@@ -1,6 +1,6 @@
 package back.server.repository;
 
-import back.server.api.dto.member.TokenInfo;
+import back.server.domain.redis.TokenInfo;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

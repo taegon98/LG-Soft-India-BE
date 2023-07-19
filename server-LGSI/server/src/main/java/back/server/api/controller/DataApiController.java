@@ -1,12 +1,12 @@
 package back.server.api.controller;
 
-import back.server.api.dto.data.DataInfo;
-import back.server.api.dto.email.EmailInfo;
+import back.server.domain.redis.DataInfo;
+import back.server.domain.redis.EmailInfo;
 import back.server.api.dto.data.RaspRequestDto;
 import back.server.api.dto.data.DataResponseDto;
-import back.server.api.dto.redis.Redis;
-import back.server.domain.EmailMessage;
-import back.server.domain.Member;
+import back.server.api.dto.email.EmailMessage;
+import back.server.domain.redis.RedisInfo;
+import back.server.domain.db.Member;
 import back.server.exception.MethodArgumentNotValidException;
 import back.server.repository.EmailRedisService;
 import back.server.repository.MemberRepository;
@@ -44,12 +44,12 @@ public class DataApiController {
         List<Member> members;
         EmailInfo emails;
 
-        Redis redis = redisService.checkCityName(request.getCityName());
-        if (redis.isFlag()) {
+        RedisInfo redisInfo = redisService.checkCityName(request.getCityName());
+        if (redisInfo.isFlag()) {
             members = memberRepository.findByCityName(request.getCityName());
 
             emails = new EmailInfo();
-            emails.setCity(redis.getCityName());
+            emails.setCity(redisInfo.getCityName());
 
             for (Member member : members) {
                 emails.getEmail().add(member.getEmail());
@@ -58,25 +58,25 @@ public class DataApiController {
             redisService.saveEmail(emails);
         }
         else {
-            emails = emailRedisService.findById(redis.getCityName()).get();
+            emails = emailRedisService.findById(redisInfo.getCityName()).get();
         }
 
 
-        /*if (Double.parseDouble(request.getWaterLevel()) >= 560 ||
-                Double.parseDouble(request.getTemperature()) >= 28 ||
-                Double.parseDouble(request.getTurbidity()) >= 3 ||
-                (Double.parseDouble(request.getPh()) <= 5 || Double.parseDouble(request.getPh()) >= 9)) {
+
+        if (Double.parseDouble(request.getWaterLevel()) >= 400 ||
+                Double.parseDouble(request.getTurbidity()) >= 3) {
 
             EmailMessage emailMessage = EmailMessage.builder()
-                    .subject("TEST")
-                    .message("TEST")
+                    .subject("WARNING")
+                    .message("HI BIVANSHU")
                     .build();
-            log.info("1");
+
             for (String email : emails.getEmail()) {
                 emailMessage.setTo(email);
                 emailSenderService.sendEmail(emailMessage);
             }
-        }*/
+        }
+
 
         redisService.saveData(request);
         return ResponseEntity.ok(200);
@@ -85,21 +85,6 @@ public class DataApiController {
     @GetMapping("/get/{cityName}")
     public ResponseEntity<DataResponseDto> getData(@PathVariable String cityName)  {
 
-       /**
-        * 센서 값 불러오기(DB 사용)
-
-       Member member = memberRepository.findByEmail(email).get();
-        DataSet data = member.getCity().getDataSet();
-
-        DataResponseDto response = DataResponseDto.builder()
-                .now(LocalDateTime.now())
-                .waterLevel(Double.parseDouble(data.getWaterLevel()))
-                .temperature(Double.parseDouble(data.getTemperature()))
-                .ph(Double.parseDouble(data.getPh()))
-                .turbidity(Double.parseDouble(data.getTurbidity()))
-                .build();
-        **/
-       
         DataInfo data = redisService.getData(cityName);
         DataResponseDto response = DataResponseDto.builder()
                 .now(LocalDateTime.now())
