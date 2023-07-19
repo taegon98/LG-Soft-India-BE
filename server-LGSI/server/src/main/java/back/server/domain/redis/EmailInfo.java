@@ -10,10 +10,16 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 @RedisHash(value = "email")
 public class EmailInfo {
     @Id
     private String city;
     private List<String> email = new ArrayList<>();
+    private long waterLevel_t;
+    private long turbidity_t;
+
+    public EmailInfo() {
+        this.waterLevel_t = 0;
+        this.turbidity_t = 0;
+    }
 }

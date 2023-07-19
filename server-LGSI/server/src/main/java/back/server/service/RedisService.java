@@ -110,4 +110,15 @@ public class RedisService {
             return null;
         }
     }
+
+    @Transactional
+    public void addTime(EmailInfo emailInfo, int flag) {
+        if (flag == 1) {
+            emailInfo.setWaterLevel_t(emailInfo.getWaterLevel_t() + 1);
+        }
+        if (flag == 2) {
+            emailInfo.setTurbidity_t(emailInfo.getTurbidity_t() + 1);
+        }
+        emailRedisService.save(emailInfo);
+    }
 }

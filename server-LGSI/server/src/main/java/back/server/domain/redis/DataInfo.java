@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Builder
 @Getter
 @AllArgsConstructor
-@RedisHash(value = "token", timeToLive = 36000)
+@RedisHash(value = "token", timeToLive = 3600)
 public class DataInfo {
     @Id
     private String cityName;

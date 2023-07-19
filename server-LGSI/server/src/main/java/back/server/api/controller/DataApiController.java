@@ -45,7 +45,7 @@ public class DataApiController {
         EmailInfo emails;
 
         RedisInfo redisInfo = redisService.checkCityName(request.getCityName());
-        if (redisInfo.isFlag()) {
+        if (redisInfo.isFlag()) {//캐시가 없으면
             members = memberRepository.findByCityName(request.getCityName());
 
             emails = new EmailInfo();
@@ -61,22 +61,39 @@ public class DataApiController {
             emails = emailRedisService.findById(redisInfo.getCityName()).get();
         }
 
-
-
-        if (Double.parseDouble(request.getWaterLevel()) >= 400 ||
-                Double.parseDouble(request.getTurbidity()) >= 3) {
-
+        if (Double.parseDouble(request.getWaterLevel()) >= 600 && emails.getWaterLevel_t() % 10 == 0) {
             EmailMessage emailMessage = EmailMessage.builder()
-                    .subject("WARNING")
-                    .message("HI BIVANSHU")
+                    .subject("WATER_LEVEL WARNING\n")
+                    .message("Warning !\n" +
+                             "The water level is too high.\n" +
+                             "Please evacuate to a safe area due to the risk of flooding.\n" +
+                             "Water Level : " + request.getWaterLevel())
                     .build();
 
             for (String email : emails.getEmail()) {
                 emailMessage.setTo(email);
                 emailSenderService.sendEmail(emailMessage);
             }
+            redisService.addTime(emails, 1);
         }
 
+
+        if (Double.parseDouble(request.getTurbidity()) >= 3 && emails.getTurbidity_t() % 10 == 0) {
+
+            EmailMessage emailMessage = EmailMessage.builder()
+                    .subject("TURBIDITY WARNING")
+                    .message("Warning !\n" +
+                             "The water turbidity is too high.\n" +
+                             "The water may be contaminated, so it is recommended to drink purified water\n" +
+                             "Turbidity : " + request.getTurbidity())
+                    .build();
+
+            for (String email : emails.getEmail()) {
+                emailMessage.setTo(email);
+                emailSenderService.sendEmail(emailMessage);
+            }
+            redisService.addTime(emails, 2);
+        }
 
         redisService.saveData(request);
         return ResponseEntity.ok(200);
