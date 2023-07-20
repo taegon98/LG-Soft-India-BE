@@ -7,12 +7,14 @@
   - [Requirements](#requirements)
   - [Installation](#installation)
 - [Tech Stacks](#stacks)
-  - [System Architecture](#system-architecture)
   - [Entity Relationship Diagram(ERD)](#entity-relationship-diagram)
-  - [Screen configuration / API address](#screen-configuration-/-api-address)
-  - [Key features](#key-features)
-  - [Workflow](#workflow)
-  - [Expectation](#expectation)
+  - [System Architecture](#system-architecture)
+  - [Cache API](#cache-api)
+  - [API address](#api-address)
+  - [Tech stack](#tech-stacks)
+  - [Screen configuration](#screen-configuration)
+- [Key features](#key-features)
+- [Expectation](#expectation)
 
 -----------------------------
 
@@ -99,8 +101,6 @@ According to the data from the World Health Organization (WHO) on 'Household dri
 
 ### Cache API
 ![image](https://github.com/Gyu-won/LGSI/assets/102223636/41550ada-12f6-4f66-b5a9-9c6d95645d63)
-
-<br>
 
 ![image](https://github.com/Gyu-won/LGSI/assets/102223636/fb488a06-0c53-42c1-9856-922a1b5dca29)
 
