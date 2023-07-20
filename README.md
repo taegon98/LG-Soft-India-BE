@@ -1,27 +1,27 @@
 # Table of Contents
-- [Project information](#project-information)
-  - [Description](#Description)
+- [Project information](#Project-information)
+  - [Description](#description)
   - [Development period](#development-period)
   - [Team members](#team-members)
-- [Getting Started Guide](#getting-started-guide)
+- [Getting Started Guide](#Getting-started-guide)
   - [Requirements](#requirements)
   - [Installation](#installation)
-- [Stacks](#stacks)
-- [System Architecture](#system-architecture)
-- [Entity Relationship Diagram(ERD)](#entity-relationship-diagram)
-- [Screen configuration / API address](#screen-configuration-/-api-address)
-- [Key features](#key-features)
-- [Workflow](#workflow)
-- [Expectation](#expectation)
+- [Tech Stacks](#stacks)
+  - [System Architecture](#system-architecture)
+  - [Entity Relationship Diagram(ERD)](#entity-relationship-diagram)
+  - [Screen configuration / API address](#screen-configuration-/-api-address)
+  - [Key features](#key-features)
+  - [Workflow](#workflow)
+  - [Expectation](#expectation)
 
 -----------------------------
 
-## 1. Project information
+# 1. Project information
 
 ### Description
 According to the data from the World Health Organization (WHO) on 'Household drinking water’ data, from 2020 to 2022, the proportion of households with ‘At least basic’ access to drinking water has increased. However, the proportions of households with ‘Surface water’ and ‘Unimproved’ access have consistently decreased. Also A think tank "Science and Environment Center", which proposes policies to the government, points out that on average **200,000 people** die every year from inadequate water supply and contaminated water, and **75%** of India's total population is affected by contaminated water. The accumulation of water quality and flow monitoring data is of paramount importance in order to diagnose pollution status in rivers and effectively manage water quality through efficient control of pollutants. That's why we aim to enhance accessibility to clean water and promote better water management in India.
 
-*Yellow: the year 2020, Blue: the year 2021, Green: the year 2022*
+**Yellow: the year 2020, Blue: the year 2021, Green: the year 2022**
 
 <img src="https://github.com/KimHeonjae/LGSI-peter/assets/134956232/44863af8-0c02-45f9-852f-f5e8116977f4.png" width="900" height="400">
 
@@ -30,9 +30,8 @@ According to the data from the World Health Organization (WHO) on 'Household dri
 
 <https://www.newstown.co.kr/news/articleView.html?idxno=329356#google_vignette>
 
-<br>
 
-## 2. Development period
+### Development period
 * 2023.07.01 ∼ 2023.07.19
 
 ### Team members
@@ -49,9 +48,18 @@ According to the data from the World Health Organization (WHO) on 'Household dri
 - **Kim Heonjae**
   - Kyungpook National University, Department of Statistics. Project Manager
 
-<br>
+------
 
-## 3. Getting Started Guide
+# 2. Getting Started Guide
+### Detailed water quality
+- Water temperature
+  - The temperature of the sea ranges from 0 to 30 degree Celsius. Considering the impact of water temperature fluctuations on marine life, the range between 20 and 26 degrees Celsius is considered optimal for living conditions and is marked as ‘Good’. However, temperatures below 10 degrees Celsius and above 30 degrees Celsius can cause respiratory problems and make it difficult to sustain life, so they are marked as ‘Worst’. 
+- pH
+  - pH is an indicator of the acidity and alkalinity of water, expressed in numbers from 1 to 14. The optimum pH required will vary in different supplies according to the composition of the water and the nature of the construction materials used in the distribution system. But it is usually in the range 6.5–8.5 and is marked as ‘Good’.
+- Turbidity
+  - Turbidity is an indicator of the cloudiness level of water, caused by various suspended particles. More specifically, it refers to the extent to which light reacts to suspended particles in the water. SiO2 is commonly used as a standard for measuring turbidity. Similarly, turbidity values usually fall within the range of 0 to 100 (SS, mg/L), readings exceeding 100 are marked as ‘Worst’.
+- Water level
+  - The water level is the height from a reference plane to the water surface. If no specific reference plane is specified, the average sea level is commonly used as the reference. However, it should be noted that the average sea level is not constant across the entire Earth’s surface.
 
 ### Requirements
 - Hardware
@@ -79,6 +87,10 @@ According to the data from the World Health Organization (WHO) on 'Household dri
 ### Workflow
 <img src="https://github.com/KimHeonjae/LGSI-peter/assets/134956232/e12c46eb-74c2-46b5-aa34-87ffc3afce47.png" width="800" height="450">
 
+-------
+
+# 3. Tech Stack
+
 ### Entity Relationship Diagram
 <img src="https://github.com/KimHeonjae/LGSI-peter/assets/134956232/6de39f27-0c61-411a-9d60-161069dbb12b.png" width="700" height="400">
 
@@ -99,24 +111,13 @@ According to the data from the World Health Organization (WHO) on 'Household dri
 ![image](https://github.com/Gyu-won/LGSI/assets/102223636/3528d8c7-66b9-4535-920a-dc40926f5e5a)
 
 
-### Screen configuration / API address
+### Screen configuration
   - Front-end
-    - Screen Configuration
-    <img src="https://github.com/KimHeonjae/LGSI-peter/assets/134956232/084ad1f5-e04e-4134-a679-81daf3e2355a.png" width="700" height="600">
+  <img src="https://github.com/KimHeonjae/LGSI-peter/assets/134956232/084ad1f5-e04e-4134-a679-81daf3e2355a.png" width="700" height="600">
 
+------
 
-## Detailed water quality
-- Water temperature
-  - The temperature of the sea ranges from 0 to 30 degree Celsius. Considering the impact of water temperature fluctuations on marine life, the range between 20 and 26 degrees Celsius is considered optimal for living conditions and is marked as ‘Good’. However, temperatures below 10 degrees Celsius and above 30 degrees Celsius can cause respiratory problems and make it difficult to sustain life, so they are marked as ‘Worst’. 
-- pH
-  - pH is an indicator of the acidity and alkalinity of water, expressed in numbers from 1 to 14. The optimum pH required will vary in different supplies according to the composition of the water and the nature of the construction materials used in the distribution system. But it is usually in the range 6.5–8.5 and is marked as ‘Good’.
-- Turbidity
-  - Turbidity is an indicator of the cloudiness level of water, caused by various suspended particles. More specifically, it refers to the extent to which light reacts to suspended particles in the water. SiO2 is commonly used as a standard for measuring turbidity. Similarly, turbidity values usually fall within the range of 0 to 100 (SS, mg/L), readings exceeding 100 are marked as ‘Worst’.
-- Water level
-  - The water level is the height from a reference plane to the water surface. If no specific reference plane is specified, the average sea level is commonly used as the reference. However, it should be noted that the average sea level is not constant across the entire Earth’s surface.
-
-
-## 4. Key features
+# 4. Key features
 * **Provision of Regional Water Quality Data**
   - Collect water quality-related data by connecting sensors to a Raspberry Pi. Provide water quality data corresponding to the user's location. Specifically, We monitor water temperature, pH, turbidity and water level based on the collected data.
 * **Automatic Data Updates**
@@ -124,9 +125,9 @@ According to the data from the World Health Organization (WHO) on 'Household dri
 * **Alarm System**
   - We assess the state of water based on water quality data. When a dangerous situation occurs, we send a notification to the user within 10 milliseconds. This enables users to receive immediate information about the water condition and take necessary measures in response.
 
+-------
 
-
-## 5. Expectation
+# 5. Expectation
 
 * Public Utilization
   * The Indian government can utilize this system to monitor the current status of water pollution and scarcity on a regional basis in real-time, and devise solutions.
