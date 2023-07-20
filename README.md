@@ -6,7 +6,7 @@
 - [Getting Started Guide](#getting-started-guide)
   - [Requirements](#requirements)
   - [Installation](#installation)
-- [Tech Stacks](#tech-stacks)
+- [Tech Stacks](#tech-stack)
   - [Entity Relationship Diagram(ERD)](#entity-relationship-diagram)
   - [System Architecture](#system-architecture)
   - [Cache API](#cache-api)
