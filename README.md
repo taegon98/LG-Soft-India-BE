@@ -1,7 +1,6 @@
 # Table of Contents
-*Note: This is only a navigation guide for the specification, and does not define or mandate terms for any specification-compliant documents.*
 - [Project information](#project-information)
-  - [Description](#description)
+  - [Description](###description)
   - [Development period](#development-period)
   - [Team members](#team-members)
 - [Getting Started Guide](#getting-started-guide)
@@ -101,10 +100,20 @@ According to the data from the World Health Organization (WHO) on 'Household dri
 
 
 ### Screen configuration / API address
-- 프론트엔드- 개발한 화면에 대한 내용 사진으로.
-  
-예시
-<img src="https://github.com/KimHeonjae/LGSI/assets/134956232/0c76d398-1476-48c5-a5a1-56d35f9b4f3b.png" width="600" height="600">
+  - Front-end
+    - Screen Configuration
+    <img src="https://github.com/KimHeonjae/LGSI-peter/assets/134956232/084ad1f5-e04e-4134-a679-81daf3e2355a.png" width="700" height="600">
+
+
+## Detailed water quality
+- Water temperature
+  - The temperature of the sea ranges from 0 to 30 degree Celsius. Considering the impact of water temperature fluctuations on marine life, the range between 20 and 26 degrees Celsius is considered optimal for living conditions and is marked as ‘Good’. However, temperatures below 10 degrees Celsius and above 30 degrees Celsius can cause respiratory problems and make it difficult to sustain life, so they are marked as ‘Worst’. 
+- pH
+  - pH is an indicator of the acidity and alkalinity of water, expressed in numbers from 1 to 14. The optimum pH required will vary in different supplies according to the composition of the water and the nature of the construction materials used in the distribution system. But it is usually in the range 6.5–8.5 and is marked as ‘Good’.
+- Turbidity
+  - Turbidity is an indicator of the cloudiness level of water, caused by various suspended particles. More specifically, it refers to the extent to which light reacts to suspended particles in the water. SiO2 is commonly used as a standard for measuring turbidity. Similarly, turbidity values usually fall within the range of 0 to 100 (SS, mg/L), readings exceeding 100 are marked as ‘Worst’.
+- Water level
+  - The water level is the height from a reference plane to the water surface. If no specific reference plane is specified, the average sea level is commonly used as the reference. However, it should be noted that the average sea level is not constant across the entire Earth’s surface.
 
 
 ## 4. Key features
