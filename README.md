@@ -1,6 +1,6 @@
 # Table of Contents
 - [Project information](#project-information)
-  - [Description](###description)
+  - [Description](###Description)
   - [Development period](#development-period)
   - [Team members](#team-members)
 - [Getting Started Guide](#getting-started-guide)
