@@ -51,7 +51,7 @@ According to the data from the World Health Organization (WHO) on 'Household dri
   - Kyungpook National University, School of Computer Science and Engineering. Hardware build-up
 - **Lee Jooyeon**
   - Kyungpook National University, School of Computer Science and Engineering. Front-End
-  - - **Lee Gyuwon**
+- **Lee Gyuwon**
   - Kyungpook National University, School of Computer Science and Engineering. Front-End
 
 
@@ -151,5 +151,3 @@ https://www.youtube.com/watch?v=9Lx_TWu2UQY
   * Water quality management and monitoring system for personal aquariums or fish tanks.
   * Water quality measurement and risk notification system for school cafeterias.
   * Shower filter replacement timing(schedule) notification system.
-
-  
