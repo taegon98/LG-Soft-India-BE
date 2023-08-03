@@ -10,7 +10,7 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-@RedisHash(value = "email")
+@RedisHash(value = "email", timeToLive = 3600)
 public class EmailInfo {
     @Id
     private String city;

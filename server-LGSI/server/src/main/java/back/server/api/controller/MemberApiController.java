@@ -16,6 +16,8 @@ import back.server.service.RedisService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
@@ -28,6 +30,7 @@ import java.util.Collections;
 @CrossOrigin(origins = "*")
 public class MemberApiController {
 
+    private final PasswordEncoder passwordEncoder;
     private final MemberService memberService;
     private final CityRepository cityRepository;
     private final RedisService redisService;
@@ -41,16 +44,16 @@ public class MemberApiController {
         }
 
         City findCity = cityRepository.findCityByCityName(dto.getCityName());
-
+        log.info(dto.getPassword());
         Member member = Member.builder()
                 .memberName(dto.getMemberName())
                 .email(dto.getEmail())
-                .password(dto.getPassword())
+                .password(passwordEncoder.encode(dto.getPassword()))
                 .cityName(dto.getCityName())
                 .city(findCity)
                 .roles(Collections.singletonList("USER"))
                 .build();
-
+        log.info(dto.getPassword());
         RedisInfo redisInfo = redisService.checkCityName(member.getCityName());
 
         if (redisInfo.isFlag()) {

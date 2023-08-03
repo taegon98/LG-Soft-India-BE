@@ -46,6 +46,7 @@ public class DataApiController {
 
         RedisInfo redisInfo = redisService.checkCityName(request.getCityName());
         if (redisInfo.isFlag()) {//캐시가 없으면
+            log.info("success");
             members = memberRepository.findByCityName(request.getCityName());
 
             emails = new EmailInfo();
@@ -61,7 +62,7 @@ public class DataApiController {
             emails = emailRedisService.findById(redisInfo.getCityName()).get();
         }
 
-        if (Double.parseDouble(request.getWaterLevel()) >= 600 && emails.getWaterLevel_t() % 10 == 0) {
+        /*if (Double.parseDouble(request.getWaterLevel()) >= 400 && emails.getWaterLevel_t() % 10 == 0) {
             EmailMessage emailMessage = EmailMessage.builder()
                     .subject("WATER_LEVEL WARNING\n")
                     .message("Warning !\n" +
@@ -75,10 +76,10 @@ public class DataApiController {
                 emailSenderService.sendEmail(emailMessage);
             }
             redisService.addTime(emails, 1);
-        }
+        }*/
 
 
-        if (Double.parseDouble(request.getTurbidity()) >= 3 && emails.getTurbidity_t() % 10 == 0) {
+        if (Double.parseDouble(request.getTurbidity()) >= 4.0 && emails.getTurbidity_t() % 10 == 0) {
 
             EmailMessage emailMessage = EmailMessage.builder()
                     .subject("TURBIDITY WARNING")
