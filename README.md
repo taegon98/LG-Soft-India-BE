@@ -116,8 +116,7 @@ https://www.youtube.com/watch?v=9Lx_TWu2UQY
 ### Cache API
 ![image](https://github.com/Gyu-won/LGSI/assets/102223636/41550ada-12f6-4f66-b5a9-9c6d95645d63)
 
-![image](https://github.com/Gyu-won/LGSI/assets/102223636/fb488a06-0c53-42c1-9856-922a1b5dca29)
- - Enhances the performance of the application by using cache(redis) in application. (27.6 sec → 2.2 sec)
+ - Enhances the performance of the application by using cache(redis) in application. (2.7  → 0.2 sec)
 ### API address
 <https://www.notion.so/API-Document-bf95aca04f6c45c292381999a01e6694?pvs=4>
 
