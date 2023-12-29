@@ -103,9 +103,6 @@ According to the data from the World Health Organization (WHO) on 'Household dri
 ### Demo
 https://www.youtube.com/watch?v=9Lx_TWu2UQY
 
-### Entity Relationship Diagram
-<img src="https://github.com/KimHeonjae/LGSI-peter/assets/134956232/6de39f27-0c61-411a-9d60-161069dbb12b.png" width="700" height="400">
-
 ### Architecture
 <img src="https://github.com/KimHeonjae/LGSI-peter/assets/134956232/74430fcf-0c78-467c-a979-2d7e70948b1b.png" width="700" height="400">
 
